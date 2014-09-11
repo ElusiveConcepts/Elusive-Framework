@@ -15,6 +15,7 @@ use elusive\debug\Debug;
  */
 define('PATH_ROOT',    dirname(dirname(__DIR__)));
 define('PATH_ELUSIVE', PATH_ROOT    . '/elusive');
+define('PATH_WEBROOT', PATH_ROOT    . '/webroot');
 define('PATH_CORE',    PATH_ELUSIVE . '/core');
 define('PATH_DEBUG',   PATH_ELUSIVE . '/debug');
 define('PATH_LIB',     PATH_ELUSIVE . '/lib');

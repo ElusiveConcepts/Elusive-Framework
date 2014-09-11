@@ -40,7 +40,7 @@ class Debug
 		require_once(PATH_LIB.'/class.events.php');
 		Events::add_event_listener('TEMPLATE', 'BEFORE_HTML_END', __CLASS__, 'render_console');
 
-		if(SERVER_MODE == 'DEBUG')
+		if(defined('SERVER_MODE') && SERVER_MODE == 'DEBUG')
 		{
 			error_reporting(E_ALL);
 		}
