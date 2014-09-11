@@ -1,0 +1,61 @@
+html { padding-bottom: 28px; }
+
+#debug_console      { position: fixed; bottom: 0; right: 0; border-radius: 4px 0 0 0; background: #024; background: rgba(16,24,32,0.95); z-index: 5000; }
+#debug_console.open { width: 100%; height: 75%; border-radius: 0; box-shadow: 0 0 20px #000; }
+
+#debug_console *   { font-size: 13px; line-height: 16px; font-family: Lato, Arial, sans-serif; }
+#debug_console pre { background: #f4f4f4; background: rgba(255,255,255,0.5); font: 13px Consolas, "Courier 10 Pitch", Courier, monospace; line-height: 1.5; margin-bottom: 1.625em; overflow: auto; padding: 0.75em 1.625em; }
+
+#debug_console ul.debug_nav          { list-style: none; height: 25px; margin: 0; padding: 0; border-bottom: 1px solid #222; }
+#debug_console.open ul.debug_nav     { background: #000; }
+#debug_console ul.debug_nav li       { float: left; height: 25px; margin: 0px; color: #999; line-height: 25px; border-right: 1px solid #222; }
+#debug_console ul.debug_nav .title   { padding: 0px 10px; color: #C60; }
+#debug_console ul.debug_nav a        { position: relative; display: block; color: #999; height: 25px; padding: 0px 10px; line-height: 25px; text-decoration: none; }
+#debug_console ul.debug_nav a:hover  { color: #FFF; background: #012; }
+#debug_console ul.debug_nav a.active { color: #FFF; background: #C60; }
+#debug_console ul.debug_nav a.active:before { content: " "; position: absolute; bottom: -10px; left: 50%; width: 0; height: 0; margin-left: -10px; border-top: 10px solid #C60; border-left: 10px solid transparent;  border-right: 10px solid transparent; }
+
+#debug_console ul.debug_nav .close      { cursor: pointer; display: none; float: right; padding: 0px 10px; }
+#debug_console.open ul.debug_nav .close { display: block; }
+
+#debug_console h2 { margin: 2em 0em 1em; color: #999; font-size: 18px; font-weight: normal; }
+#debug_console h3 { margin: 2em 0em 1em; color: #999; font-size: 16px; font-weight: normal; }
+#debug_console h4 { margin: 1em 0em 0em; color: #999; font-size: 14px; font-weight: normal; }
+#debug_console p  { color: #AAA; }
+#debug_console .err_msg { color: #AAA; }
+
+#debug_console pre { margin: 0; padding: 0; background: none; }
+
+#debug_console_panels                     { display: none; height: 90%; overflow: auto; }
+#debug_console.open #debug_console_panels { display: block; }
+
+#debug_console_panels .debug_panel { display: none; padding: 0px 20px 20px 20px; }
+#debug_console_panels .debug_panel:after { display: block; content: "."; clear: both; visibility: hidden; height: 0; width: 0; }
+
+#debug_console .debug_table         { width: 100%; margin: 0px 0px 20px; color: #AAA; border-collapse: collapse; background: #30353A; }
+#debug_console .debug_table caption { width: 100%; color: #000; background: #666; border: 1px solid #666; border-left-width: 0px; }
+#debug_console .debug_table th      { padding: 4px 5px; text-align: left; font-size: 13px; color: #FFF; background: #555; border: 1px solid #666; }
+#debug_console .debug_table td      { padding: 4px 5px; text-align: left; font-size: 13px; border: 1px solid #666; }
+
+#debug_console .debug_table tr:nth-child(odd) { background: #3A3F45 !important; }
+
+#debug_console .debug_table td.pre  { white-space: pre-wrap; }
+
+/*==[ Icons ]==*/
+#debug_console .icon       { position: relative; padding-left: 2em !important; line-height: 1.6em; }
+#debug_console .icon:after { position: absolute; top: 0px; left: 5px; font-size: 1.5em; line-height: 1.6em; font-weight: normal; font-style: normal; font-family: "elusive-debug-icons"; }
+
+#debug_console .icon.error:after   { content: "\f057"; color: #C00; }
+#debug_console .icon.warning:after { content: "\f071"; color: #FC0; }
+#debug_console .icon.notice:after  { content: "\f06a"; color: #9C5; }
+#debug_console .icon.time:after    { content: "\e602"; color: #444; }
+#debug_console .icon.request:after { content: "\e604"; color: #444; }
+#debug_console .icon.close:after   { content: "\f057"; color: #C00; }
+#debug_console .icon.log:after     { content: "\e600"; color: #9C5; }
+#debug_console .icon.event:after   { content: "\e605"; color: #9C5; }
+#debug_console .icon.bug:after     { content: "\e603"; color: #9C5; }
+
+#debug_console ul.debug_nav .icon              { padding-left: 2.5em !important; }
+#debug_console ul.debug_nav .icon:after        { left: 7px; color: #999; font-size: 1.2em; line-height: 26px; }
+#debug_console ul.debug_nav a:hover.icon:after { left: 7px; color: #FFF; font-size: 1.2em; line-height: 26px; }
+#debug_console ul.debug_nav .active.icon:after { left: 7px; color: #FFF; font-size: 1.2em; line-height: 26px; }
