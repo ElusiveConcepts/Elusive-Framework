@@ -38,6 +38,7 @@ class Request
 		// Parse the request
 		$uri       = $this->data['ENV']['REQUEST_URI'];
 		$uri       = trim(preg_replace('/\?.*/', '', $uri), '/');
+                $uri       = trim(preg_replace('/(\%20|[\s-])/', '_', $uri), '/');
 		$this->app = explode('/', $uri);
 
 		// Response Type
