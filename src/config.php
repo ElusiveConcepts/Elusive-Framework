@@ -54,14 +54,14 @@ switch(array_shift(explode(".", $_SERVER['HTTP_HOST'])))
 	/* sample.example.com
 	// Sample Subdomain Application
 	case 'sample':
-	    // Define App Mode
-	    define('APP_MODE', 'DEBUG');
-	    // define('APP_MODE', 'MAINTENANCE');
-	    // define('APP_MODE', 'PRODUCTION');
+		// Define App Mode
+		define('APP_MODE', 'DEBUG');
+		// define('APP_MODE', 'MAINTENANCE');
+		// define('APP_MODE', 'PRODUCTION');
 
 		// Define Application
 		define('APP_PATH', PATH_ROOT . '/sample');
-	    define('APP_CONTROLLER', 'sample\controllers\Primary');
+		define('APP_CONTROLLER', 'sample\controllers\Primary');
 		break;
 	*/
 
