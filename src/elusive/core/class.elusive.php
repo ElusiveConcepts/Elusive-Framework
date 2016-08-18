@@ -1,17 +1,54 @@
-<?php namespace elusive\core;
+<?php
+/**
+ * Elusive Framework Core Class File
+ *
+ * @copyright Copyright (C) 2011-2016 Elusive Concepts, LLC.
+ * @author Roger Soucy <roger.soucy@elusive-concepts.com>
+ * @license https://www.gnu.org/licenses/gpl.html GNU General Public License, version 3
+ * @version 1.00.000
+ *
+ * @package Elusive\Core
+ */
+
+namespace elusive\core;
 
 use elusive\debug\Debug;
 
+/**
+ * Elusive Framework Core Object
+ *
+ * Singleton class for containing, loading, and initializing the 
+ * Elusive framework.
+ *
+ * Must be called with Elusive::get_instance().
+ */
 final class Elusive
 {
+	/** @var object|null Instance of the framework singleton */
 	private static $instance = NULL;
+
+	/** @var boolean Framework has been instantiated */
 	private static $loaded = FALSE;
 
+	/**
+	 * Constructor
+	 *
+	 * Cannot be called externally. Use Elusive::get_instance() to retreive
+	 * an instance of the class.
+	 */
 	private function __construct()
 	{
 
 	}
 
+	/**
+	 * Get an instance of the framework object
+	 *
+	 * Creates a new instance of the framework if not created and returns
+	 * the current instance.
+	 *
+	 * @return object
+	 */
 	public static function get_instance()
 	{
 		if(self::$instance == NULL)
@@ -25,7 +62,7 @@ final class Elusive
 	/**
 	 * Framework initialization
 	 *
-	 * Registers the autoloader
+	 * Registers the autoloader and creates the Request object.
 	 *
 	 * @return boolean
 	 */

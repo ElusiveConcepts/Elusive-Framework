@@ -1,30 +1,65 @@
-<?php namespace elusive\debug;
+<?php
+/**
+ * Elusive Framework View Class File
+ *
+ * @copyright Copyright (C) 2011-2016 Elusive Concepts, LLC.
+ * @author Roger Soucy <roger.soucy@elusive-concepts.com>
+ * @license https://www.gnu.org/licenses/gpl.html GNU General Public License, version 3
+ * @version 1.00.000
+ *
+ * @package Elusive\Debug
+ */
+
+namespace elusive\debug;
 
 use elusive\debug\Debug;
 use elusive\core\Request;
 
+/**
+ * Debugging View Renderer
+ *
+ * Render output display for the Debugger
+ */
 class View
 {
 
 	const NL = "\n";
 	const BR = "<br>\n";
 
-	protected $debug   = FALSE;
+	/** @var boolean Application debug mode active */
+	protected $debug = FALSE;
+
+	/** @var object|null Request object instance */
 	protected $request = NULL;
-	protected $traces  = array();
-	protected $errors  = array();
-	protected $logs    = array();
-	protected $events  = array();
 
-	protected $page   = array();
+	/** @var array Debugging traces */
+	protected $traces = array();
 
+	/** @var array Debugging errors */
+	protected $errors = array();
 
+	/** @var array Debugging logs*/
+	protected $logs = array();
+
+	/** @var array Debugging events */
+	protected $events = array();
+
+	/** @var array */
+	protected $page = array();
+
+	/**
+	 * Constructor
+	 *
+	 * Loads debugging data from the static Debug object
+	 *
+	 * @return void
+	 */
 	public function __construct()
 	{
 		// Safety Net
-		if(!defined('SERVER_MODE')) { define('SERVER_MODE', 'PRODUCTION'); }
+		if(!defined('APP_MODE')) { define('APP_MODE', 'PRODUCTION'); }
 
-		if(SERVER_MODE == 'DEBUG') { $this->debug = TRUE; }
+		if(APP_MODE == 'DEBUG') { $this->debug = TRUE; }
 
 		$this->request = Request::get_instance();
 		$this->traces  = Debug::get('traces');
@@ -33,7 +68,14 @@ class View
 		$this->events  = Debug::get('events');
 	}
 
-
+	/**
+	 * Render debug data output
+	 *
+	 * @param string $template Output template name
+	 * @param boolean $return_html Return output as string (default: FALSE)
+	 *
+	 * @return void|string
+	 */
 	public function render($template, $return_html = FALSE)
 	{
 		if($return_html) { ob_start(); }
@@ -48,7 +90,20 @@ class View
 		}
 	}
 
-
+	/**
+	 * Format and output errors
+	 *
+	 * @param array $e Error data
+	 * @param string $format Output formatting (default: str)
+	 *                       Valid Options:
+	 *                           str = String format
+	 *                           dl  = Definition list item format
+	 *                           li  = Ordered/Unordered list item format
+	 *                           tr  = Table row format
+	 * @param boolean $ret Return output as a string (default: FALSE)
+	 *
+	 * @return void|string
+	 */
 	private function format_error($e, $format = 'str', $ret = FALSE)
 	{
 		$icon = 'icon ';
@@ -121,7 +176,16 @@ class View
 		else     { echo   $html; }
 	}
 
-
+	/**
+	 * Output debug data as HTML table
+	 *
+	 * @param array $data Debug data
+	 * @param array $headers Table column headers (optional)
+	 * @param string $caption Table caption (optional)
+	 * @param boolean $ret Return output as string (default: FALSE)
+	 *
+	 * @param void|string
+	 */
 	private function create_debug_table($data, $headers = array(), $caption = '', $ret = FALSE)
 	{
 		$html  = "<table class='debug_table'>" . self::NL;
@@ -156,7 +220,15 @@ class View
 		else     { echo   $html; }
 	}
 
-
+	/**
+	 * Format and output code snippet
+	 *
+	 * @param string $file Source filename
+	 * @param int $line Source line number
+	 * @param boolean $ret Return output as string (default: FALSE)
+	 *
+	 * @return mixed
+	 */
 	private function create_snippet($file, $line, $ret = FALSE)
 	{
 		$line--;

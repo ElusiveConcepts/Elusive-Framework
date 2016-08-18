@@ -118,15 +118,9 @@ $error_count     = (count($this->errors['general']) == 1) ? '1 Error' : count($t
 	if(typeof(jQuery) == 'undefined')
 	{
 		document.write("<scr" + "ipt type=\"text/javascript\" src=\"//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js\"></scr" + "ipt>");
-		//var script_node = document.createElement('script');
-		//script_node.setAttribute("type","text/javascript");
-		//script_node.setAttribute("src", "//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js");
-		//document.body.appendChild(script_node);
 	}
-
-	//$(function() { });
 </script>
-<!--script type="text/javascript" src="/elusive/debug/templates/js/console.js"-->
+
 <script type="text/javascript">
 	<?php echo @file_get_contents(PATH_ROOT . '/elusive/debug/templates/js/console.js'); ?>
 </script>

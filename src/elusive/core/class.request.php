@@ -1,18 +1,52 @@
-<?php namespace elusive\core;
+<?php
+/**
+ * Elusive Framework Request Class File
+ *
+ * @copyright Copyright (C) 2011-2016 Elusive Concepts, LLC.
+ * @author Roger Soucy <roger.soucy@elusive-concepts.com>
+ * @license https://www.gnu.org/licenses/gpl.html GNU General Public License, version 3
+ * @version 1.00.000
+ *
+ * @package Elusive\Core
+ */
 
+namespace elusive\core;
+
+/**
+ * Request Object
+ *
+ * Singleton class which holds the request paramaters and cleans them for use.
+ * Must be called with Request::get_instance().
+ */
 class Request
 {
+	/** @var object|null Holds the current instance of the request object */
 	private static $_instance = NULL;
 
-	public $app  = array();
-	public $vars = array();
-	public $data = array();
+	/** @var array Raw (pre-processed) request data */
 	public $raw  = array();
 
+	/** @var array Cleaned (post-processed) request data */
+	public $data = array();
+
+	/** @var array Cleaned GET/POST request parameters */
+	public $vars = array();
+
+	/** @var array URI request path elements */
+	public $app  = array();
+
+	/** @var string Response output type */
 	public $response = "HTML";
 
+	/**
+	 * Constructor
+	 *
+	 * Populates and cleans the request properties, performs some security
+	 * clean-up, and parses the request URI.
+	 */
 	private function __construct()
 	{
+		// Add raw request data
 		$this->raw['ENV']     = $_SERVER;
 		$this->raw['GET']     = $_GET;
 		$this->raw['POST']    = $_POST;
@@ -38,7 +72,7 @@ class Request
 		// Parse the request
 		$uri       = $this->data['ENV']['REQUEST_URI'];
 		$uri       = trim(preg_replace('/\?.*/', '', $uri), '/');
-                $uri       = trim(preg_replace('/(\%20|[\s-])/', '_', $uri), '/');
+		$uri       = trim(preg_replace('/(\%20|[\s-])/', '_', $uri), '/');
 		$this->app = explode('/', $uri);
 
 		// Response Type
@@ -46,7 +80,14 @@ class Request
 		$this->response = isset($this->data['POST']['response']) ? $this->data['GET']['response'] : $this->response;
 	}
 
-
+	/**
+	 * Get an instance of the Request object
+	 *
+	 * Creates an instance of the request object and returns the
+	 * current instance.
+	 *
+	 * @return object
+	 */
 	public static function get_instance()
 	{
 		if(self::$_instance == NULL)
@@ -56,13 +97,15 @@ class Request
 		return self::$_instance;
 	}
 
-	public function dump()
-	{
-		echo "<pre><strong>Request->app</strong>\n"  . print_r($this->app,1)  . "</pre>";
-		echo "<pre><strong>Request->raw</strong>\n"  . print_r($this->raw,1)  . "</pre>";
-		echo "<pre><strong>Request->data</strong>\n" . print_r($this->data,1) . "</pre>";
-	}
-
+	/**
+	 * Clean request data
+	 *
+	 * Filters request data using built-in filter functions
+	 * @param array $data Associative array of request parameters
+	 * @param boolean $allow_html Allow HTML tags in request data
+	 *
+	 * @return array
+	 */
 	private function clean($data, $allow_html = false)
 	{
 		if(!is_array($data)) { $data = array($data); }
@@ -75,8 +118,6 @@ class Request
 			}
 			else
 			{
-				//$value = mb_convert_encoding((string) $value, 'UTF-8', 'UTF-8');
-
 				if($allow_html)
 				{
 					$value = filter_var($value, FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW | FILTER_FLAG_ENCODE_HIGH);

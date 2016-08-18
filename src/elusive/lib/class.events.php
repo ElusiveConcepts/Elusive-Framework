@@ -1,10 +1,39 @@
-<?php namespace elusive\lib;
+<?php
+/**
+ * Elusive Framework Events Class File
+ *
+ * @copyright Copyright (C) 2011-2016 Elusive Concepts, LLC.
+ * @author Roger Soucy <roger.soucy@elusive-concepts.com>
+ * @license https://www.gnu.org/licenses/gpl.html GNU General Public License, version 3
+ * @version 1.00.000
+ *
+ * @package Elusive\Lib
+ */
+
+namespace elusive\lib;
 
 use elusive\debug\Debug;
 
+/**
+ * Event Class
+ *
+ * Provides a static event object that can be used to subscribe to and fire events.
+ */
 class Events
 {
+	/** @var array event manager storage array */
 	static private $manager = array();
+
+	/**
+	 * Constructor
+	 *
+	 * Cannot be called externally
+	 */
+	private function __construct()
+	{
+
+	}
+
 
 	/**
 	 * Add Event Listener
@@ -14,6 +43,8 @@ class Events
 	 * @param string $subscriber classname of the event subscriber
 	 * @param string $callback callback function to be called on event
 	 * @param boolean $bubble optional allow events to propogate
+	 *
+	 * @return void
 	 */
 	static public function add_event_listener($type, $event, $subscriber, $callback, $bubble = TRUE)
 	{
@@ -42,6 +73,8 @@ class Events
 	 * @param string type event type descriptor
 	 * @param string $event event name descriptor
 	 * @param string $subscriber classname of the event subscriber
+	 *
+	 * @return void
 	 */
 	static public function remove_event_listener($type, $event, $subscriber)
 	{
@@ -54,12 +87,15 @@ class Events
 		}
 	}
 
+
 	/**
 	 * Dispatch Event
 	 *
 	 * @param string type event type descriptor
 	 * @param string $event event name descriptor
 	 * @param mixed $data OPTIONAL data to be passed to event listeners
+	 *
+	 * @return mixed
 	 */
 	static public function dispatch($type, $event, $data = NULL)
 	{

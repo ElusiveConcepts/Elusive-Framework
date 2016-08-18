@@ -1,12 +1,37 @@
-<?php namespace elusive\core;
+<?php
+/**
+ * Elusive Framework Application Class File
+ *
+ * @copyright Copyright (C) 2011-2016 Elusive Concepts, LLC.
+ * @author Roger Soucy <roger.soucy@elusive-concepts.com>
+ * @license https://www.gnu.org/licenses/gpl.html GNU General Public License, version 3
+ * @version 1.00.000
+ *
+ * @package Elusive\Core
+ */
+
+namespace elusive\core;
 
 use elusive\lib\Events;
 
+/**
+ * Application Object
+ *
+ * Loads the application as defined in the elusive config file.
+ */
 final class Application
 {
+	/** @var object|null Application controller instance */
 	public static $app     = NULL;
+
+	/** @var object|null Application request instance [singleton] */
 	public static $request = NULL;
 
+	/**
+	 * Run the Application Controller
+	 *
+	 * @return void
+	 */
 	public static function run()
 	{
 		Events::dispatch('APPLICATION', 'RUN');
@@ -38,6 +63,8 @@ final class Application
 	 * file will be named /config.php. However, if the application
 	 * frontloader is /myapp_index.php, the configuration file would
 	 * be /myapp_config.php.
+	 *
+	 * @return void
 	 */
 	 public static function load_application_settings()
 	 {

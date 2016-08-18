@@ -1,18 +1,46 @@
-<?php namespace elusive\debug;
+<?php
+/**
+ * Elusive Framework Debugger
+ *
+ * @copyright Copyright (C) 2011-2016 Elusive Concepts, LLC.
+ * @author Roger Soucy <roger.soucy@elusive-concepts.com>
+ * @license https://www.gnu.org/licenses/gpl.html GNU General Public License, version 3
+ * @version 1.00.000
+ *
+ * @package Elusive\Debug
+ */
+
+namespace elusive\debug;
 
 use \Exception;
 use elusive\lib\Timer;
 use elusive\lib\Events;
 use elusive\debug\View;
 
+/**
+ * Debugging Object
+ *
+ * Registers exception handlers and provides a library of 
+ * debugging utility functions. 
+ */
 class Debug
 {
+	/** @var boolean Debugger has been loaded */ 
 	private static $loaded = FALSE;
 
+	/* @var array Debugging logs */
 	private static $logs       = array();
+
+	/* @var array Debugging events */
 	private static $events     = array();
+
+	/* @var array Debugging errors */
 	private static $errors     = array();
+
+	/* @var array Debugging traces */
 	private static $traces     = array();
+
+	/* @var array Debugging benchmarks */
 	private static $benchmarks = array();
 
 
@@ -29,7 +57,7 @@ class Debug
 		if(self::$loaded == true) { return FALSE; }
 
 		// The variable has been loaded;
-		self::$loaded = true;
+		self::$loaded = TRUE;
 
 		// Register the error handlers
 		set_exception_handler(__NAMESPACE__ . '\Debug::exception');
@@ -51,6 +79,11 @@ class Debug
 
 	/**
 	 * Debug Console Rendering
+	 *
+	 * @param string $modified_data ?
+	 * @param string $data ?
+	 *
+	 * @return string
 	 */
 	public static function render_console($modified_data, $data)
 	{
@@ -67,6 +100,8 @@ class Debug
 	 * Primary Exception Handler
 	 *
 	 * @param Exception $exception
+	 *
+	 * @return void
 	 */
 	public static function exception(Exception $ex)
 	{
@@ -151,6 +186,10 @@ class Debug
 
 	/**
 	 * Getter
+	 *
+	 * @param string $key Name of property to return
+	 *
+	 * @return mixed
 	 */
 	public static function get($key)
 	{
@@ -159,6 +198,15 @@ class Debug
 
 	/**
 	 * Event Logger
+	 *
+	 * Log an event to the console events
+	 *
+	 * @param string $type Event type
+	 * @param string $event Event name
+	 * @param string $event Event listeners
+	 * @param string $data Event data
+	 *
+	 * @return void
 	 */
 	public static function log_event($type, $event, $listeners, $data)
 	{
@@ -172,6 +220,12 @@ class Debug
 
 	/**
 	 * Logger
+	 *
+	 * Log data to the console logs
+	 * @param mixed $data Data to log
+	 * @param boolean $pre Include html <pre> tags (default: FALSE)
+	 *
+	 * @return void
 	 */
 	public static function log($data, $pre = FALSE)
 	{
@@ -181,19 +235,40 @@ class Debug
 		);
 	}
 
+	/**
+	 * Start a benchmark counter
+	 *
+	 * Create a timer instance and begin the benchmark timer.
+	 *
+	 * @param string $benchmark Benchmark name
+	 * @param string $comment Benchmark start comment (optional)
+	 *
+	 * @return boolean
+	 */
 	public static function start_benchmark($benchmark, $comment = '')
 	{
 		if(empty(self::$benchmarks[$benchmark]))
 		{
 			self::$benchmarks[$benchmark] = new Timer();
 			self::$benchmarks[$benchmark]->start($comment);
+			return TRUE;
 		}
 		else
 		{
-			return false;
+			return FALSE;
 		}
 	}
 
+	/**
+	 * Add a timer mark to a benchmark
+	 *
+	 * Create a named mark on an existing benchmark, or create the 
+	 * benchmark if it doesn't exist.
+	 *
+	 * @param string $benchmark Benchmark name
+	 * @param string $mark Mark name
+	 * @param string $comment Benchmark mark comment (optional) 
+	 */
 	public static function mark_benchmark($benchmark, $mark, $comment = '')
 	{
 		if(empty(self::$benchmarks[$benchmark]))
@@ -204,6 +279,18 @@ class Debug
 		self::$benchmarks[$benchmark]->mark($mark, $comment);
 	}
 
+	/**
+	 * Stop a named benchmark and get the results
+	 *
+	 * @param string $benchmark Benchmark name
+	 * @param string $comment Benchmark stop comment (optional)
+	 * @param string $format Time format to return (default: ms)
+	 *                       Valid Options:
+	 *                           ms = milliseconds
+	 *                           s  = seconds
+	 *
+	 * @return array
+	 */
 	public static function get_benchmark($benchmark, $comment = '', $format = 'ms')
 	{
 		if(!empty(self::$benchmarks[$benchmark]))
@@ -217,6 +304,16 @@ class Debug
 		}
 	}
 
+	/**
+	 * Stop and retreive all running benchmarks
+	 *
+	 * @param string $format Time format to return (default: ms)
+	 *                       Valid Options:
+	 *                           ms = milliseconds
+	 *                           s  = seconds
+	 *
+	 * @return array
+	 */
 	public static function get_benchmarks($format = 'ms')
 	{
 		$benchmarks = array();
@@ -227,9 +324,12 @@ class Debug
 		return $benchmarks;
 	}
 
-
 	/**
-	 * Stack Trace
+	 * Set and Parse the Stack Trace
+	 *
+	 * @param array|null $stack_trace Stack trace data
+	 *
+	 * @return void
 	 */
 	private static function set_stack_trace($stack_trace = NULL)
 	{
@@ -253,7 +353,9 @@ class Debug
 	}
 
 	/**
-	 * Backtrace
+	 * Set and Parse the Backtrace
+	 *
+	 * @return void
 	 */
 	private static function set_backtrace()
 	{
@@ -285,7 +387,5 @@ class Debug
 
 			self::$back_trace = $backtrace_data;
 		}
-
 	}
-
 }
