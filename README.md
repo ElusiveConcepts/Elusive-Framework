@@ -2,7 +2,13 @@
 
 #Elusive-Framework
 
-##Simple PHP Web Framework
+The Elusive Framework is a minimalist PHP development framework for creating websites and web apps.
+
+###Documentation
++ Installation Documentation - _coming soon_
++ [Code Documentation](http://rawgit.com/ElusiveConcepts/Elusive-Framework/master/docs/index.html)
+
+---
 
 ###Build Process:
 
