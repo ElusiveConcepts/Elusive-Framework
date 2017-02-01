@@ -117,11 +117,12 @@ $error_count     = (count($this->errors['general']) == 1) ? '1 Error' : count($t
 <script type="text/javascript">
 	if(typeof(jQuery) == 'undefined')
 	{
-		document.write("<scr" + "ipt type=\"text/javascript\" src=\"//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js\"></scr" + "ipt>");
+		document.write("<scr" + "ipt src=\"https://code.jquery.com/jquery-3.1.1.min.js\" integrity=\"sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=\" crossorigin=\"anonymous\"></scr" + "ipt>");
 	}
 </script>
 
 <script type="text/javascript">
+	<?php echo @file_get_contents(PATH_ROOT . '/elusive/debug/templates/js/ec_render_source.js'); ?>
 	<?php echo @file_get_contents(PATH_ROOT . '/elusive/debug/templates/js/console.js'); ?>
 </script>
 

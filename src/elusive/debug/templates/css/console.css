@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
 html { padding-bottom: 28px; }
 
 #debug_console      { position: fixed; bottom: 0; right: 0; border-radius: 4px 0 0 0; background: #024; background: rgba(16,24,32,0.95); z-index: 5000; }

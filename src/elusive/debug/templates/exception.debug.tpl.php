@@ -4,13 +4,11 @@
 	<title>Server Error: Application Exception</title>
 	<meta charset="UTF-8">
 
-	<link rel="stylesheet" type="text/css" href="/elusive/debug/templates/css/ec_source.css">
-	<link rel="stylesheet" type="text/css" href="/elusive/debug/templates/css/exception.css">
-	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato">
-
-	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script type="text/javascript" src="/elusive/debug/templates/js/ec_render_source.js"></script>
-	<script type="text/javascript" src="/elusive/debug/templates/js/exception.js"></script>
+	<style type="text/css">
+		<?php @include_once(PATH_ROOT . '/elusive/debug/templates/css/ec_source.css'); ?>
+		<?php @include_once(PATH_ROOT . '/elusive/debug/templates/css/exception.css'); ?>
+	</style>
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato">
 </head>
 <body>
 
@@ -70,7 +68,12 @@
 
 </div>
 
-<?php /*$this->render('console');*/ ?>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+	<?php @include_once(PATH_ROOT . '/elusive/debug/templates/js/ec_render_source.js'); ?>
+	<?php @include_once(PATH_ROOT . '/elusive/debug/templates/js/exception.js'); ?>
+</script>
+	
 <?php echo \elusive\lib\Events::dispatch('TEMPLATE', 'BEFORE_HTML_END', ''); ?>
 
 </body>

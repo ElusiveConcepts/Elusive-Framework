@@ -103,18 +103,25 @@ final class Elusive
 		$name_space = implode('/', $name_space);
 
 		// Determine the path to the requested class
-		$path = PATH_ROOT . "/{$name_space}/class.{$class_name}.php";
+		$path1 = PATH_ROOT . "/{$name_space}/class.{$class_name}.php";
+		$path2 = PATH_ROOT . "/{$name_space}/{$class_name}.class.php";
 
 		// If the file exists, require the file and return true
-		if(file_exists($path))
+		if(file_exists($path1))
 		{
-			require_once($path);
+			require_once($path1);
 			return true;
+		}
+		else if(file_exists($path2))
+		{
+			require_once($path2);
 		}
 		else
 		{
+			// Do not throw an error here as it can cause issues with
+			// other libraries that may register autoloaders after this one.
 			//throw new \Exception('Dynamic loader failed to find class file: ' . $path);
-			trigger_error('Dynamic loader failed to find class file: ' . $path, E_USER_WARNING);
+			//trigger_error('Dynamic loader failed to find class file: ' . $path, E_USER_WARNING);
 			return false;
 		}
 	}
