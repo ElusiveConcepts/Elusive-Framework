@@ -4,13 +4,9 @@
 	<title>Server Error: Application Exception</title>
 	<meta charset="UTF-8">
 
-	<link rel="stylesheet" type="text/css" href="/elusive/debug/templates/css/ec_source.css">
-	<link rel="stylesheet" type="text/css" href="/elusive/debug/templates/css/exception.css">
-	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato">
+	<link rel="stylesheet" type="text/css" href="http://framework.elusive-concepts.com/css/ec_source.css">
+	<link rel="stylesheet" type="text/css" href="http://framework.elusive-concepts.com/css/exception.css">
 
-	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script type="text/javascript" src="/elusive/debug/templates/js/ec_render_source.js"></script>
-	<script type="text/javascript" src="/elusive/debug/templates/js/exception.js"></script>
 </head>
 <body>
 
@@ -70,9 +66,13 @@
 
 </div>
 
-<?php /*$this->render('console');*/ ?>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="http://framework.elusive-concepts.com/js/ec_render_source.js"></script>
+<script type="text/javascript" src="http://framework.elusive-concepts.com/js/exception.js"</script>
+
+<?php $this->render('console'); ?>
+
 <?php echo \elusive\lib\Events::dispatch('TEMPLATE', 'BEFORE_HTML_END', ''); ?>
 
 </body>
 </html>
-

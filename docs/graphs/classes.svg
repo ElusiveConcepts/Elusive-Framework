@@ -42,15 +42,15 @@
 <polygon fill="none" stroke="black" points="270.891,-614 206.891,-614 206.891,-578 270.891,-578 270.891,-614"/>
 <text text-anchor="middle" x="238.891" y="-593.2" font-family="Courier,monospace" font-size="11.00">Request</text>
 </g>
-<!-- \\elusive\\core\\Elusive -->
-<g id="node2" class="node"><title>\\elusive\\core\\Elusive</title>
-<polygon fill="none" stroke="black" points="270.891,-560 206.891,-560 206.891,-524 270.891,-524 270.891,-560"/>
-<text text-anchor="middle" x="238.891" y="-539.2" font-family="Courier,monospace" font-size="11.00">Elusive</text>
-</g>
 <!-- \\elusive\\core\\Application -->
-<g id="node3" class="node"><title>\\elusive\\core\\Application</title>
-<polygon fill="none" stroke="black" points="284.391,-506 193.391,-506 193.391,-470 284.391,-470 284.391,-506"/>
-<text text-anchor="middle" x="238.891" y="-485.2" font-family="Courier,monospace" font-size="11.00">Application</text>
+<g id="node2" class="node"><title>\\elusive\\core\\Application</title>
+<polygon fill="none" stroke="black" points="284.391,-560 193.391,-560 193.391,-524 284.391,-524 284.391,-560"/>
+<text text-anchor="middle" x="238.891" y="-539.2" font-family="Courier,monospace" font-size="11.00">Application</text>
+</g>
+<!-- \\elusive\\core\\Elusive -->
+<g id="node3" class="node"><title>\\elusive\\core\\Elusive</title>
+<polygon fill="none" stroke="black" points="270.891,-506 206.891,-506 206.891,-470 270.891,-470 270.891,-506"/>
+<text text-anchor="middle" x="238.891" y="-485.2" font-family="Courier,monospace" font-size="11.00">Elusive</text>
 </g>
 <!-- \\elusive\\lib\\Timer -->
 <g id="node4" class="node"><title>\\elusive\\lib\\Timer</title>
@@ -62,30 +62,30 @@
 <polygon fill="none" stroke="black" points="267.391,-372 210.391,-372 210.391,-336 267.391,-336 267.391,-372"/>
 <text text-anchor="middle" x="238.891" y="-351.2" font-family="Courier,monospace" font-size="11.00">Events</text>
 </g>
+<!-- \\elusive\\debug\\Debug -->
+<g id="node6" class="node"><title>\\elusive\\debug\\Debug</title>
+<polygon fill="none" stroke="black" points="265.891,-292 211.891,-292 211.891,-256 265.891,-256 265.891,-292"/>
+<text text-anchor="middle" x="238.891" y="-271.2" font-family="Courier,monospace" font-size="11.00">Debug</text>
+</g>
 <!-- \\elusive\\debug\\Elusive_Exception -->
-<g id="node6" class="node"><title>\\elusive\\debug\\Elusive_Exception</title>
-<polygon fill="none" stroke="black" points="304.391,-292 173.391,-292 173.391,-256 304.391,-256 304.391,-292"/>
-<text text-anchor="middle" x="238.891" y="-271.2" font-family="Courier,monospace" font-size="11.00">Elusive_Exception</text>
+<g id="node7" class="node"><title>\\elusive\\debug\\Elusive_Exception</title>
+<polygon fill="none" stroke="black" points="304.391,-238 173.391,-238 173.391,-202 304.391,-202 304.391,-238"/>
+<text text-anchor="middle" x="238.891" y="-217.2" font-family="Courier,monospace" font-size="11.00">Elusive_Exception</text>
 </g>
 <!-- \\Exception -->
 <g id="node10" class="node"><title>\\Exception</title>
-<ellipse fill="none" stroke="black" cx="50.6955" cy="-274" rx="50.8918" ry="18"/>
-<text text-anchor="middle" x="50.6955" y="-270.3" font-family="Times,serif" font-size="14.00" fill="gray">\Exception</text>
+<ellipse fill="none" stroke="black" cx="50.6955" cy="-220" rx="50.8918" ry="18"/>
+<text text-anchor="middle" x="50.6955" y="-216.3" font-family="Times,serif" font-size="14.00" fill="gray">\Exception</text>
 </g>
 <!-- \\elusive\\debug\\Elusive_Exception&#45;&gt;\\Exception -->
 <g id="edge1" class="edge"><title>\\elusive\\debug\\Elusive_Exception&#45;&gt;\\Exception</title>
-<path fill="none" stroke="black" d="M173.291,-274C153.256,-274 131.272,-274 111.572,-274"/>
-<polygon fill="none" stroke="black" points="111.501,-270.5 101.501,-274 111.501,-277.5 111.501,-270.5"/>
+<path fill="none" stroke="black" d="M173.291,-220C153.256,-220 131.272,-220 111.572,-220"/>
+<polygon fill="none" stroke="black" points="111.501,-216.5 101.501,-220 111.501,-223.5 111.501,-216.5"/>
 </g>
 <!-- \\elusive\\debug\\View -->
-<g id="node7" class="node"><title>\\elusive\\debug\\View</title>
-<polygon fill="none" stroke="black" points="265.891,-238 211.891,-238 211.891,-202 265.891,-202 265.891,-238"/>
-<text text-anchor="middle" x="238.891" y="-217.2" font-family="Courier,monospace" font-size="11.00">View</text>
-</g>
-<!-- \\elusive\\debug\\Debug -->
-<g id="node8" class="node"><title>\\elusive\\debug\\Debug</title>
+<g id="node8" class="node"><title>\\elusive\\debug\\View</title>
 <polygon fill="none" stroke="black" points="265.891,-184 211.891,-184 211.891,-148 265.891,-148 265.891,-184"/>
-<text text-anchor="middle" x="238.891" y="-163.2" font-family="Courier,monospace" font-size="11.00">Debug</text>
+<text text-anchor="middle" x="238.891" y="-163.2" font-family="Courier,monospace" font-size="11.00">View</text>
 </g>
 <!-- \\app\\controllers\\Primary -->
 <g id="node9" class="node"><title>\\app\\controllers\\Primary</title>

@@ -10,13 +10,14 @@ $error_count     = (count($this->errors['general']) == 1) ? '1 Error' : count($t
 
 <div id="debug_console">
 	<ul class="debug_nav">
+		<li class="logo"><span id="elusive_logo" class="elusive-icon-logo"></span><?php if($error_count) : ?> <span class="elusive-icon-warning"></span><?php endif; ?></li>
 		<li class="title">Elusive Debug Console</li>
-		<li><a class="icon request" href="#" rel="request">Request</a></li>
-		<li><a class="icon log"     href="#" rel="logs"   >Logs</a></li>
-		<li><a class="icon event"   href="#" rel="events" >Events</a></li>
-		<li><a class="icon warning" href="#" rel="errors" ><?php echo $error_count ?></a></li>
-		<li><a class="icon time"    href="#" rel="timers" ><?php echo $timer ?></a></li>
-		<li class="icon close" onclick="Elusive.console.close()">Close</li>
+		<li><a class="request" href="#" rel="request"><span class="elusive-icon-sphere"></span> Request</a></li>
+		<li><a class="log" href="#" rel="logs"><span class="elusive-icon-stack"></span> Logs</a></li>
+		<li><a class="event" href="#" rel="events"><span class="elusive-icon-flag"></span> Events</a></li>
+		<li><a class="warning" href="#" rel="errors"><span class="elusive-icon-warning"></span> <?php echo $error_count ?></a></li>
+		<li><a class="time" href="#" rel="timers"><span class="elusive-icon-stopwatch"></span> <?php echo $timer ?></a></li>
+		<li class="close" onclick="Elusive.console.close()"><span class="elusive-icon-cancel"></span> Close</li>
 	</ul>
 
 	<div id="debug_console_panels">
@@ -117,17 +118,8 @@ $error_count     = (count($this->errors['general']) == 1) ? '1 Error' : count($t
 <script type="text/javascript">
 	if(typeof(jQuery) == 'undefined')
 	{
-		document.write("<scr" + "ipt type=\"text/javascript\" src=\"//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js\"></scr" + "ipt>");
+		//document.write('<scr' + 'ipt type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></scr' + 'ipt>');
 	}
 </script>
-
-<script type="text/javascript">
-	<?php echo @file_get_contents(PATH_ROOT . '/elusive/debug/templates/js/console.js'); ?>
-</script>
-
-<style type="text/css">
-	<?php echo @file_get_contents(PATH_ROOT . '/elusive/debug/templates/css/elusive-debug-icons.css'); ?>
-	<?php echo @file_get_contents(PATH_ROOT . '/elusive/debug/templates/css/console.css'); ?>
-	<?php echo @file_get_contents(PATH_ROOT . '/elusive/debug/templates/css/ec_source.css'); ?>
-</style>
+<script src="http://framework.elusive-concepts.com/js/console.js"></script>
 
