@@ -65,7 +65,7 @@ class Debug
 
 		// Register a template event handler
 		// Note: Dynamic loader probably doesn't exist yet
-		require_once(PATH_LIB.'/class.events.php');
+		require_once(PATH_LIB.'/Events.class.php');
 		Events::add_event_listener('TEMPLATE', 'BEFORE_HTML_END', __CLASS__, 'render_console');
 
 		if(defined('SERVER_MODE') && SERVER_MODE == 'DEBUG')
@@ -119,8 +119,6 @@ class Debug
 
 		$view = new View();
 		$view->render('exception');
-
-		//Display::factory('Exception');
 	}
 
 	/**

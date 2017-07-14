@@ -32,13 +32,13 @@ define('PATH_TMP',     PATH_ROOT    . '/tmp');
 /**
  * Load and initialize the Debugger
  */
-require_once(PATH_DEBUG . '/class.debug.php');
+require_once(PATH_DEBUG . '/Debug.class.php');
 if(!Debug::init()) { trigger_error('Could not initialize Elusive Debugger', E_ERROR); }
 
 /**
  * Load and initialize the Framework Core Class
  */
 Debug::log('Loading Framework...');
-require_once(PATH_CORE . '/class.elusive.php');
+require_once(PATH_CORE . '/Elusive.class.php');
 if(!Elusive::init()) { trigger_error('Could not initialize Elusive Framework', E_ERROR); }
 

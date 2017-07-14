@@ -71,7 +71,6 @@ final class Application
 		$index = self::$request->data['ENV']['PHP_SELF'];
 
 		$app_config_prefix  = substr(preg_replace('/index\.php.*/', '', $index), strrpos($index, '/')+1);
-		//$app_config_prefix .= ($app_config_prefix != '') ? '_' : '';
 
 		include_once(PATH_ROOT . "/{$app_config_prefix}config.php");
 

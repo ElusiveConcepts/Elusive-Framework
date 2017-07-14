@@ -16,8 +16,8 @@ use elusive\debug\Debug;
 /**
  * Start Benchmark
  */
-require (__DIR__) . '/../elusive/debug/class.debug.php';
-require (__DIR__) . '/../elusive/lib/class.timer.php';
+require (__DIR__) . '/../elusive/debug/Debug.class.php';
+require (__DIR__) . '/../elusive/lib/Timer.class.php';
 Debug::start_benchmark('execution_time', 'Starting bootstrap...');
 
 /**

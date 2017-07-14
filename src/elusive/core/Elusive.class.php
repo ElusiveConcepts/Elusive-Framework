@@ -95,16 +95,14 @@ final class Elusive
 		// If the class already exists, prevent reloading it
 		if(class_exists($class)) { return true; }
 
-		$class = strtolower($class);
-
 		// Separate the namespace from the class name
 		$name_space = explode('\\', $class);
 		$class_name = implode('', array_splice($name_space, -1));
 		$name_space = implode('/', $name_space);
 
 		// Determine the path to the requested class
-		$path1 = PATH_ROOT . "/{$name_space}/class.{$class_name}.php";
-		$path2 = PATH_ROOT . "/{$name_space}/{$class_name}.class.php";
+		$path1 = PATH_ROOT . "/{$name_space}/{$class_name}.class.php";
+		$path2 = PATH_ROOT . "/{$name_space}/class.{$class_name}.php";
 
 		// If the file exists, require the file and return true
 		if(file_exists($path1))
@@ -120,8 +118,6 @@ final class Elusive
 		{
 			// Do not throw an error here as it can cause issues with
 			// other libraries that may register autoloaders after this one.
-			//throw new \Exception('Dynamic loader failed to find class file: ' . $path);
-			//trigger_error('Dynamic loader failed to find class file: ' . $path, E_USER_WARNING);
 			return false;
 		}
 	}
