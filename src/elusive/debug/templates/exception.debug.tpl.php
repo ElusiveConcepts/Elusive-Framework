@@ -4,11 +4,9 @@
 	<title>Server Error: Application Exception</title>
 	<meta charset="UTF-8">
 
-	<style type="text/css">
-		<?php @include_once(PATH_ROOT . '/elusive/debug/templates/css/ec_source.css'); ?>
-		<?php @include_once(PATH_ROOT . '/elusive/debug/templates/css/exception.css'); ?>
-	</style>
-	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato">
+	<link rel="stylesheet" type="text/css" href="http://framework.elusive-concepts.com/css/ec_source.css">
+	<link rel="stylesheet" type="text/css" href="http://framework.elusive-concepts.com/css/exception.css">
+
 </head>
 <body>
 
@@ -68,12 +66,12 @@
 
 </div>
 
-<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-<script type="text/javascript">
-	<?php @include_once(PATH_ROOT . '/elusive/debug/templates/js/ec_render_source.js'); ?>
-	<?php @include_once(PATH_ROOT . '/elusive/debug/templates/js/exception.js'); ?>
-</script>
-	
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="http://framework.elusive-concepts.com/js/ec_render_source.js"></script>
+<script type="text/javascript" src="http://framework.elusive-concepts.com/js/exception.js"</script>
+
+<?php $this->render('console'); ?>
+
 <?php echo \elusive\lib\Events::dispatch('TEMPLATE', 'BEFORE_HTML_END', ''); ?>
 
 </body>

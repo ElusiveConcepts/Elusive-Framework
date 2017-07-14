@@ -4,13 +4,9 @@
 	<title>Server Error (500)</title>
 	<meta charset="UTF-8">
 
-	<link rel="stylesheet" type="text/css" href="/elusive/debug/templates/css/ec_source.css">
-	<link rel="stylesheet" type="text/css" href="/elusive/debug/templates/css/exception.css">
-	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato">
+	<link rel="stylesheet" type="text/css" href="http://framework.elusive-concepts.com/css/ec_source.css">
+	<link rel="stylesheet" type="text/css" href="http://framework.elusive-concepts.com/css/exception.css">
 
-	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script type="text/javascript" src="/elusive/debug/templates/js/ec_render_source.js"></script>
-	<script type="text/javascript" src="/elusive/debug/templates/js/exception.js"></script>
 </head>
 <body>
 
@@ -30,7 +26,6 @@
 		<div class="message">
 			<p>An internal server error has occurred on <strong><?php echo $this->request->data['ENV']['SERVER_NAME'] ?></strong> while trying to access the following url:</p>
 			<blockquote><a href="http://<?php echo $this->request->data['ENV']['SERVER_NAME'] . $this->request->data['ENV']['REQUEST_URI'] ?>">http://<?php echo $this->request->data['ENV']['SERVER_NAME'] . $this->request->data['ENV']['REQUEST_URI'] ?></a></blockquote>
-			<p>If this problem persists, please notify the site administrator at: <a href="mailto:<?php echo $this->request->data['ENV']['SERVER_ADMIN'] ?>"><?php echo $this->request->data['ENV']['SERVER_ADMIN'] ?></a>.</p>
 		</div>
 
 	</div><!-- #content -->
@@ -39,6 +34,10 @@
 	</footer>
 
 </div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="http://framework.elusive-concepts.com/js/ec_render_source.js"></script>
+<script type="text/javascript" src="http://framework.elusive-concepts.com/js/exception.js"</script>
 
 </body>
 </html>
