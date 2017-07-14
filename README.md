@@ -28,12 +28,13 @@ git checkout elusive/framework src/config.php
 git checkout elusive/framework src/app/app.php
 git checkout elusive/framework src/app/controllers/Primary.class.php
 git checkout elusive/framework src/webroot/index.php
+git checkout elusive/framework src/webroot/.htaccess
 ```
 
 __Update Elusive Core Files:__
 ```bash
 # checkout the tracking branch, fetch & rebase.
-git checkout framework/elusive 
+git checkout elusive/framework
 git pull elusive-origin
 
 # update the elusive-core branch with changes from elusive-origin
