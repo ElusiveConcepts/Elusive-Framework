@@ -101,18 +101,14 @@ final class Elusive
 		$name_space = implode('/', $name_space);
 
 		// Determine the path to the requested class
-		$path1 = PATH_ROOT . "/{$name_space}/{$class_name}.class.php";
-		$path2 = PATH_ROOT . "/{$name_space}/class.{$class_name}.php";
+		$path = self::find_file(PATH_ROOT . "/{$name_space}/{$class_name}.class.php");
+		$path = ($path === FALSE) ? self::find_file(PATH_ROOT . "/{$name_space}/class.{$class_name}.php") : $path;
 
 		// If the file exists, require the file and return true
-		if(file_exists($path1))
+		if($path !== FALSE)
 		{
-			require_once($path1);
+			require_once($path);
 			return true;
-		}
-		else if(file_exists($path2))
-		{
-			require_once($path2);
 		}
 		else
 		{
@@ -120,5 +116,35 @@ final class Elusive
 			// other libraries that may register autoloaders after this one.
 			return false;
 		}
+	}
+
+
+	/**
+	 * Case insensitive file search
+	 *
+	 * To accomodate case insensitive URL requests which call class files that
+	 * that may be case-sensitive, we poll the directory if the case-sensitive
+	 * file can't be found and return any case-insensitive match.
+	 *
+	 * @param string $file Full file path and file name
+	 *
+	 * @return mixed original file, case insensitive matching file, or FALSE
+	 */
+	private static function find_file($file)
+	{
+		if(file_exists($file)) { return $file; }
+
+		$directory = dirname($file);
+		$fileArray = glob($directory . '/*', GLOB_NOSORT);
+		$fileLower = strtolower($file);
+
+		foreach($fileArray as $f)
+		{
+			if(strtolower($f) == $fileLower)
+			{
+				return $f;
+			}
+		}
+		return FALSE;
 	}
 }
