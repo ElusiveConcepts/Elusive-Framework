@@ -108,6 +108,13 @@ final class Elusive
 		if($path !== FALSE)
 		{
 			require_once($path);
+
+			// initialize static classes
+			if (method_exists($class, '__static_construct'))
+			{
+            	$class::__static_construct();
+        	}
+
 			return true;
 		}
 		else
