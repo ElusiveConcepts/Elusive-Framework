@@ -20,12 +20,12 @@ use elusive\debug\View;
 /**
  * Debugging Object
  *
- * Registers exception handlers and provides a library of 
- * debugging utility functions. 
+ * Registers exception handlers and provides a library of
+ * debugging utility functions.
  */
 class Debug
 {
-	/** @var boolean Debugger has been loaded */ 
+	/** @var boolean Debugger has been loaded */
 	private static $loaded = FALSE;
 
 	/* @var array Debugging logs */
@@ -99,11 +99,11 @@ class Debug
 	/**
 	 * Primary Exception Handler
 	 *
-	 * @param Exception $exception
+	 * @param $exception
 	 *
 	 * @return void
 	 */
-	public static function exception(Exception $ex)
+	public static function exception($ex)
 	{
 		self::set_stack_trace($ex->getTrace());
 
@@ -260,12 +260,12 @@ class Debug
 	/**
 	 * Add a timer mark to a benchmark
 	 *
-	 * Create a named mark on an existing benchmark, or create the 
+	 * Create a named mark on an existing benchmark, or create the
 	 * benchmark if it doesn't exist.
 	 *
 	 * @param string $benchmark Benchmark name
 	 * @param string $mark Mark name
-	 * @param string $comment Benchmark mark comment (optional) 
+	 * @param string $comment Benchmark mark comment (optional)
 	 */
 	public static function mark_benchmark($benchmark, $mark, $comment = '')
 	{
