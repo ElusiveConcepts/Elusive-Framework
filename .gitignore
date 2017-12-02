@@ -46,3 +46,4 @@ Thumbs.db
 ########################
 *.sublime-project
 *.sublime-workspace
+.phpintel
