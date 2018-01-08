@@ -80,7 +80,14 @@ class View
 	{
 		if($return_html) { ob_start(); }
 
-		require(PATH_DEBUG . '/templates/' . $template . '.' . strtolower(SERVER_MODE) . '.tpl.php');
+		if(defined(SERVER_ERROR_DOC) && SERVER_MODE == 'PRODUCTION')
+		{
+			require(SERVER_ERROR_DOC);
+		}
+		else
+		{
+			require(PATH_DEBUG . '/templates/' . $template . '.' . strtolower(SERVER_MODE) . '.tpl.php');
+		}
 
 		if($return_html)
 		{
