@@ -5,14 +5,14 @@
 
 	$(function()
 	{
-		$("<link/>", {rel:"stylesheet", type:"text/css", href:"http://framework.elusive-concepts.com/css/elusive-framework-icons.css" }).appendTo("head");
-		$("<link/>", {rel:"stylesheet", type:"text/css", href:"http://framework.elusive-concepts.com/css/console.css" }).appendTo("head");
-		$("<link/>", {rel:"stylesheet", type:"text/css", href:"http://framework.elusive-concepts.com/css/ec_source.css" }).appendTo("head");
-		$("<link/>", {rel:"stylesheet", type:"text/css", href:"http://fonts.googleapis.com/css?family=Lato" }).appendTo("head");
+		$("<link/>", {rel:"stylesheet", type:"text/css", href:"https://framework.elusive-concepts.com/css/elusive-framework-icons.css" }).appendTo("head");
+		$("<link/>", {rel:"stylesheet", type:"text/css", href:"https://framework.elusive-concepts.com/css/console.css" }).appendTo("head");
+		$("<link/>", {rel:"stylesheet", type:"text/css", href:"https://framework.elusive-concepts.com/css/ec_source.css" }).appendTo("head");
+		$("<link/>", {rel:"stylesheet", type:"text/css", href:"//fonts.googleapis.com/css?family=Lato" }).appendTo("head");
 
 		if(typeof(Elusive.renderer) == "undefined")
 		{
-			$.getScript('http://framework.elusive-concepts.com/js/ec_render_source.js', function()
+			$.getScript('https://framework.elusive-concepts.com/js/ec_render_source.js', function()
 			{
 				if(Elusive.source == false)
 				{
