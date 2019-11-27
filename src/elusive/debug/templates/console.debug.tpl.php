@@ -13,7 +13,7 @@ $error_count     = (count($this->errors['general']) == 1) ? '1 Error' : count($t
 		<li class="logo"><span id="elusive_logo" class="elusive-icon-logo"></span><?php if($error_count > 0) : ?> <span class="elusive-icon-warning"></span><?php endif; ?></li>
 		<li class="title">Elusive Debug Console</li>
 		<li><a class="request" href="#" rel="request"><span class="elusive-icon-sphere"></span> Request</a></li>
-		<li><a class="log" href="#" rel="logs"><span class="elusive-icon-stack"></span> Logs</a></li>
+		<li><a class="logs" href="#" rel="logs"><span class="elusive-icon-stack"></span> Logs</a></li>
 		<li><a class="event" href="#" rel="events"><span class="elusive-icon-flag"></span> Events</a></li>
 		<li><a class="warning" href="#" rel="errors"><span class="elusive-icon-warning"></span> <?php echo $error_count ?></a></li>
 		<li><a class="time" href="#" rel="timers"><span class="elusive-icon-stopwatch"></span> <?php echo $timer ?></a></li>

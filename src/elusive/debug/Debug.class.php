@@ -227,9 +227,14 @@ class Debug
 	 */
 	public static function log($data, $pre = FALSE)
 	{
+		$backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2);
+		$caller    = $backtrace[0];
+
 		self::$logs[] = array(
-			'time'      => date('Y-m-d H:i:s'),
-			'data'      => ($pre) ? '<pre>' . $data . '</pre>' : $data
+			'time' => date('Y-m-d H:i:s'),
+			'data' => ($pre) ? '<pre>' . $data . '</pre>' : $data,
+			'file' => $caller['file'],
+			'line' => $caller['line']
 		);
 	}
 
