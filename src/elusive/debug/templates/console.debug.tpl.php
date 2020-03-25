@@ -49,8 +49,11 @@ $error_count     = (count($this->errors['general']) == 1) ? '1 Error' : count($t
 			</tr>
 			<?php foreach($this->logs as $log) : ?>
 			<tr>
-				<td><?php echo $log['time'] ?></td>
-				<td><pre><?php print_r($log['data']) ?></pre></td>
+				<td><?= $log['time'] ?><br></td>
+				<td><?= $log['file'] ?> (Line: <?= $log['line'] ?>)</td>
+			</tr>
+			<tr>
+				<td colspan="2"><pre><?php print_r($log['data']) ?></pre></td>
 			</tr>
 			<?php endforeach; ?>
 			</table>

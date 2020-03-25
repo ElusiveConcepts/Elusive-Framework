@@ -1,15 +1,24 @@
 /*==[ ELUSIVE NAMESPACE ]==*/
-(function(Elusive, $, undefined)
+(function(Elusive)
 {
+	/** @type {Boolean} true if source code rendering is active */
 	Elusive.source = Elusive.source || false;
 
-	$(function()
+	/**
+	 * Console Initialization
+	 *
+	 * @return {Void}
+	 */
+	const _init = function()
 	{
 		if(Elusive.source == false)
 		{
 			Elusive.render_source();
 			Elusive.source = true;
 		}
-	});
+	}
 
-}(window.Elusive = window.Elusive || {}, jQuery));
+	// Initialize the module on DOM ready
+	document.addEventListener("DOMContentLoaded", _init);
+
+}(window.Elusive = window.Elusive || {}));
