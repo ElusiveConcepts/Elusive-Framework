@@ -10,14 +10,19 @@ $error_count     = (count($this->errors['general']) == 1) ? '1 Error' : count($t
 
 <div id="debug_console">
 	<ul class="debug_nav">
-		<li class="logo"><span id="elusive_logo" class="elusive-icon-logo"></span><?php if($error_count > 0) : ?> <span class="elusive-icon-warning"></span><?php endif; ?></li>
+		<li class="logo">
+			<span id="ec_logo" class="elusive-icon-logo"></span>
+			<?php if($error_count > 0) : ?> <span class="error-flag elusive-icon-warning"></span><?php endif; ?>
+		</li>
 		<li class="title">Elusive Debug Console</li>
-		<li><a class="request" href="#" rel="request"><span class="elusive-icon-sphere"></span> Request</a></li>
-		<li><a class="logs" href="#" rel="logs"><span class="elusive-icon-stack"></span> Logs</a></li>
-		<li><a class="event" href="#" rel="events"><span class="elusive-icon-flag"></span> Events</a></li>
-		<li><a class="warning" href="#" rel="errors"><span class="elusive-icon-warning"></span> <?php echo $error_count ?></a></li>
-		<li><a class="time" href="#" rel="timers"><span class="elusive-icon-stopwatch"></span> <?php echo $timer ?></a></li>
-		<li class="close" onclick="Elusive.console.close()"><span class="elusive-icon-cancel"></span> Close</li>
+		<li class="request" data-panel="request"><span class="elusive-icon-sphere"></span> Request</li>
+		<li class="logs"    data-panel="logs"   ><span class="elusive-icon-stack"></span> Logs</li>
+		<li class="events"  data-panel="events" ><span class="elusive-icon-flag"></span> Events</li>
+		<li class="errors"  data-panel="errors" ><span class="elusive-icon-warning"></span> <?= $error_count ?></li>
+		<li class="timeers" data-panel="timers" ><span class="elusive-icon-stopwatch"></span> <?= $timer ?></li>
+		<li class="close" onclick="Elusive.console.close()">
+			<span class="elusive-icon-cancel"></span><span class="text"> Close</span>
+		</li>
 	</ul>
 
 	<div id="debug_console_panels">
@@ -50,7 +55,10 @@ $error_count     = (count($this->errors['general']) == 1) ? '1 Error' : count($t
 			<?php foreach($this->logs as $log) : ?>
 			<tr>
 				<td><?= $log['time'] ?><br></td>
-				<td><?= $log['file'] ?> (Line: <?= $log['line'] ?>)</td>
+				<td>
+					<?php echo str_replace(PATH_ROOT, '', $log['file']); ?>
+					(L:<?= $log['line'] ?>)
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2"><pre><?php print_r($log['data']) ?></pre></td>

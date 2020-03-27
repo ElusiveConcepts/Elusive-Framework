@@ -25,13 +25,14 @@
 	 */
 	Elusive.console = {
 		'active' : false,
-		'close'  : function() { _console.classList.remove('open'); },
-		'open'   : function() {
-			_console.classList.add('open');
+		'open'   : function() { _console.classList.add('open'); },
+		'close'  : function()
+		{
+			_console.classList.remove('open');
 
-			let links = _nav.querySelectorAll('a.active');
+			let links = _nav.querySelectorAll('.active');
 
-			for(let l in links) { links[l].classList.remove('active'); }
+			links.forEach(function(link) { link.classList.remove('active'); });
 		}
 	};
 
@@ -65,13 +66,12 @@
 
 		if(_console)
 		{
-console.log(_console);
 			Elusive.console.active = true;
 
 			_nav    = _console.querySelector('ul.debug_nav');
-			_panels = _console.querySelector('debug_console_panels');
+			_panels = _console.querySelector('#debug_console_panels');
 
-			let links = _nav.querySelectorAll('a');
+			let links = _nav.querySelectorAll('[data-panel]');
 
 			if(links)
 			{
@@ -99,15 +99,15 @@ console.log(_console);
 
 		Elusive.console.open();
 
-		let links  = _nav.querySelectorAll('a.active');
-		let panels = _panel.querySelectorAll('.debug_panel');
+		let links  = _nav.querySelectorAll('.active');
+		let panels = _panels.querySelectorAll('.active');
 
-		for(let l in links)  { links[l].classList.remove('active'); }
-		for(let p in panels) { panels[p].classList.remove('active'); }
+		links.forEach(function(l)  { l.classList.remove('active'); });
+		panels.forEach(function(p) { p.classList.remove('active'); });
 
 		this.classList.add('active');
 
-		let panel = _panels.getElementById('#debug_panel_' + this.getAttribute('rel'));
+		let panel = _panels.querySelector('#debug_panel_' + this.dataset.panel);
 
 		if(panel) { panel.classList.add('active'); }
 	}

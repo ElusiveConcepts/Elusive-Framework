@@ -1,5 +1,5 @@
 /*==[ ELUSIVE NAMESPACE ]==*/
-(function(Elusive, $, undefined)
+(function(Elusive)
 {
 	Elusive.renderer = {};
 	var q=null;window.PR_SHOULD_USE_CONTINUATION=!0;
@@ -32,5 +32,5 @@
 	PR_NOCODE:"nocode",PR_PLAIN:"pln",PR_PUNCTUATION:"pun",PR_SOURCE:"src",PR_STRING:"str",PR_TAG:"tag",PR_TYPE:"typ"}})();
 	Elusive.toggle_code = function(t){var e=document.getElementById(t).style;e.display=(e.display=='block')?'none':'block';}
 
-}(window.Elusive = window.Elusive || {}, jQuery));
+}(window.Elusive = window.Elusive || {}));
 

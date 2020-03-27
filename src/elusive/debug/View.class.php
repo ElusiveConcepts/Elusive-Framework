@@ -136,10 +136,12 @@ class View
 			case "Deprecated":        $icon .= 'notice';  break;
 		}
 
+		$file = str_replace(PATH_ROOT, '', $e['file']);
+
 		switch($format)
 		{
 			case 'str':
-				$html = "{$e['type']} ({$e['code']}): {$e['msg']} in {$e['file']} at line {$e['line']}";
+				$html = "{$e['type']} ({$e['code']}): {$e['msg']} in {$file} at line {$e['line']}";
 				break;
 
 			case 'dl':
@@ -148,7 +150,7 @@ class View
 					"<dd>",
 					"	<p class='err_msg'>{$e['msg']}</p>",
 					$this->create_snippet($e['file'], $e['line']),
-					"	<p class='fileinfo'><strong>File:</strong> {$e['file']} | <strong>Line:</strong> {$e['line']}</p>",
+					"	<p class='fileinfo'><strong>File:</strong> {$file} | <strong>L:</strong>{$e['line']}</p>",
 					"</dd>"
 				);
 				$html = implode(self::NL, $html);
@@ -160,7 +162,7 @@ class View
 					"	<h4 class='{$icon}'>{$e['type']} ({$e['code']})</h4>",
 					"	<p class='err_msg'>{$e['msg']}</p>",
 					$this->create_snippet($e['file'], $e['line']),
-					"	<p class='fileinfo'><strong>File:</strong> {$e['file']} | <strong>Line:</strong> {$e['line']}</p>",
+					"	<p class='fileinfo'><strong>File:</strong> {$file} | <strong>L:</strong>{$e['line']}</p>",
 					"</li>"
 				);
 				$html = implode(self::NL, $html);
@@ -169,10 +171,11 @@ class View
 			case 'tr':
 				$html = array(
 					"<tr>",
+					"	<td colspan='2'>{$file} (L:{$e['line']})</td>",
+					"</tr>",
+					"<tr>",
 					"	<td class='{$icon}'>{$e['type']} ({$e['code']})</td>",
 					"	<td class='err_msg'>{$e['msg']}</td>",
-					"	<td>{$e['file']}</td>",
-					"	<td>L: {$e['line']}</td>",
 					"</tr>"
 				);
 				$html = implode(self::NL, $html);

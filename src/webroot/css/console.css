@@ -1,31 +1,39 @@
-#debug_console      { position: fixed; bottom: 20px; right: 0; border-radius: 4px 0 0 4px; background: #024; background: rgba(16,24,32,0.95); z-index: 5000; }
+#debug_console      { position: fixed; bottom: 20px; right: 0; border-radius: 4px 0 0 4px; background: rgba(0,0,0,0.9); z-index: 5000; }
 #debug_console.open { bottom: 0px; width: 100%; height: 75%; border-radius: 0; box-shadow: 0 0 20px #000; }
 
 #debug_console *   { font-size: 13px; line-height: 16px; font-family: Lato, Arial, sans-serif; }
 #debug_console pre { background: #f4f4f4; background: rgba(255,255,255,0.5); font: 13px Consolas, "Courier 10 Pitch", Courier, monospace; line-height: 1.5; margin-bottom: 1.625em; overflow: auto; padding: 0.75em 1.625em; }
 
-#debug_console ul.debug_nav          { list-style: none; height: 25px; margin: 0; padding: 0px 12px; vertical-align: top; }
+#debug_console ul.debug_nav          { list-style: none; margin: 0; padding: 0px 12px; vertical-align: top; overflow:hidden; }
 #debug_console:hover ul.debug_nav    { display: inline-block; }
 #debug_console.open ul.debug_nav     { display: block; background: #000; }
-
-#debug_console ul.debug_nav li       { display: none; float: left; height: 25px; margin: 0px; color: #999; line-height: 25px; }
+#debug_console ul.debug_nav li       { position: relative; display: none; float: left; height: 35px; margin: 0px; padding: 0px 10px; color: #999; line-height: 35px; text-decoration: none; }
 #debug_console:hover ul.debug_nav li { display: block; }
 #debug_console.open ul.debug_nav li  { display: block; }
-#debug_console ul.debug_nav .title   { padding: 0px 10px; color: #C60; border-right: 1px solid #222; }
-#debug_console ul.debug_nav a        { position: relative; display: block; color: #999; height: 25px; padding: 0px 10px; line-height: 25px; text-decoration: none; border-right: 1px solid #222; }
-#debug_console ul.debug_nav a:hover  { color: #FFF; background: #012; }
-#debug_console ul.debug_nav a.active { color: #FFF; background: #C60; }
-#debug_console ul.debug_nav a.active:before { content: " "; position: absolute; bottom: -10px; left: 50%; width: 0; height: 0; margin-left: -10px; border-top: 10px solid #C60; border-left: 10px solid transparent;  border-right: 10px solid transparent; }
+
+#debug_console ul.debug_nav li[data-panel]        { cursor: pointer; border-right: 1px solid #222; }
+#debug_console ul.debug_nav li[data-panel]:hover  { color: #FFF; background: #123; }
+#debug_console ul.debug_nav li[data-panel].active { color: #FFF; background: #C60; }
 
 #debug_console ul.debug_nav span[class^="elusive-icon"] { padding-right: 5px; }
-#debug_console ul.debug_nav .logo { display: block; }
+#debug_console ul.debug_nav .logo { display: block; padding: 0; border-right: none; }
 #debug_console ul.debug_nav .logo span.elusive-icon-logo { color: #C60; font-size: 20px; vertical-align: text-top; }
+#debug_console ul.debug_nav .title   { padding: 0px 10px; color: #C60; border-right: 1px solid #222; }
 #debug_console ul.debug_nav .error-flag { padding-left: 15px; color: #F33; }
 #debug_console:hover ul.debug_nav .logo span.error-flag { display: none; }
 #debug_console.open ul.debug_nav .logo span.error-flag { display: none; }
 
-#debug_console ul.debug_nav .close      { cursor: pointer; display: none; float: right; padding: 0px 10px; }
-#debug_console.open ul.debug_nav .close { display: block; }
+#debug_console ul.debug_nav .close       { cursor: pointer; display: none; float: right; padding: 0px 10px; }
+#debug_console:hover ul.debug_nav .close { display: none; }
+#debug_console.open ul.debug_nav .close  { display: block; }
+
+@media screen and (max-width: 600px)
+{
+	#debug_console.open ul.debug_nav .title  { display: none; }
+	#debug_console:hover ul.debug_nav .title { display: none; }
+	#debug_console ul.debug_nav [data-panel] span[class^="elusive-icon"] { display: none; }
+	#debug_console ul.debug_nav .close .text { display: none; }
+}
 
 #debug_console h2 { margin: 2em 0em 1em; color: #999; font-size: 18px; font-weight: normal; }
 #debug_console h3 { margin: 2em 0em 1em; color: #999; font-size: 16px; font-weight: normal; }
@@ -38,8 +46,9 @@
 #debug_console_panels                     { display: none; height: 90%; overflow: auto; }
 #debug_console.open #debug_console_panels { display: block; }
 
-#debug_console_panels .debug_panel { display: none; padding: 0px 20px 20px 20px; }
-#debug_console_panels .debug_panel:after { display: block; content: "."; clear: both; visibility: hidden; height: 0; width: 0; }
+#debug_console_panels .debug_panel        { display: none; max-width: 1200px; margin: auto; padding: 0px 20px 20px 20px; }
+#debug_console_panels .debug_panel:after  { display: block; content: "."; clear: both; visibility: hidden; height: 0; width: 0; }
+#debug_console_panels .debug_panel.active { display: block; }
 
 #debug_console .debug_table         { width: 100%; margin: 0px 0px 20px; color: #AAA; border-collapse: collapse; background: #30353A; }
 #debug_console .debug_table caption { width: 100%; color: #000; background: #666; border: 1px solid #666; border-left-width: 0px; }
@@ -51,20 +60,18 @@
 #debug_console .debug_table td.pre  { white-space: pre-wrap; }
 
 /*==[ Icons ]==*/
-#debug_console .icon       { position: relative; padding-left: 2em !important; line-height: 1.6em; }
-#debug_console .icon:after { position: absolute; top: 0px; left: 5px; font-size: 1.5em; line-height: 1.6em; font-weight: normal; font-style: normal; font-family: "elusive-debug-icons"; }
+#debug_console .icon        { position: relative; }
+#debug_console .icon:before { display: inline-block; position: relative; padding-right: 5px; font-size: 13px; font-family: "elusive-framework-icons"; vertical-align: middle; }
 
-#debug_console .icon.error:after   { content: "\f057"; color: #C00; }
-#debug_console .icon.warning:after { content: "\f071"; color: #FC0; }
-#debug_console .icon.notice:after  { content: "\f06a"; color: #9C5; }
-#debug_console .icon.time:after    { content: "\e602"; color: #444; }
-#debug_console .icon.request:after { content: "\e604"; color: #444; }
-#debug_console .icon.close:after   { content: "\f057"; color: #C00; }
-#debug_console .icon.log:after     { content: "\e600"; color: #9C5; }
-#debug_console .icon.event:after   { content: "\e605"; color: #9C5; }
-#debug_console .icon.bug:after     { content: "\e603"; color: #9C5; }
+#debug_console .icon.error:before   { content: "\ed6b"; color: #C20; }
+#debug_console .icon.warning:before { content: "\ed50"; color: #C60; }
+#debug_console .icon.notice:before  { content: "\ed64"; color: #990; }
+#debug_console .icon.time:before    { content: "\ea5e"; color: #444; }
+#debug_console .icon.request:before { content: "\ec91"; color: #444; }
+#debug_console .icon.close:before   { content: "\ed66"; color: #C00; }
+#debug_console .icon.log:before     { content: "\e9cf"; color: #9C5; }
+#debug_console .icon.event:before   { content: "\eca4"; color: #9C5; }
+#debug_console .icon.bug:before     { content: "\eb79"; color: #9C5; }
 
-#debug_console ul.debug_nav .icon              { padding-left: 2.5em !important; }
-#debug_console ul.debug_nav .icon:after        { left: 7px; color: #999; font-size: 1.2em; line-height: 26px; }
-#debug_console ul.debug_nav a:hover.icon:after { left: 7px; color: #FFF; font-size: 1.2em; line-height: 26px; }
-#debug_console ul.debug_nav .active.icon:after { left: 7px; color: #FFF; font-size: 1.2em; line-height: 26px; }
+#debug_console .error   { color: #C20; }
+#debug_console .warning { color: #C60; }
