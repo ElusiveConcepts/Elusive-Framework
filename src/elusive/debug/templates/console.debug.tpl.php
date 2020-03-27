@@ -125,11 +125,4 @@ $error_count     = (count($this->errors['general']) == 1) ? '1 Error' : count($t
 
 	</div>
 </div>
-
-<script type="text/javascript">
-	if(typeof(jQuery) == 'undefined')
-	{
-		//document.write('<scr' + 'ipt type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></scr' + 'ipt>');
-	}
-</script>
 <script src="https://framework.elusive-concepts.com/js/console.js"></script>

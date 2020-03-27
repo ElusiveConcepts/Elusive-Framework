@@ -80,7 +80,7 @@ class View
 	{
 		if($return_html) { ob_start(); }
 
-		if(defined(SERVER_ERROR_DOC) && SERVER_MODE == 'PRODUCTION')
+		if(defined('SERVER_ERROR_DOC') && SERVER_MODE == 'PRODUCTION')
 		{
 			require(SERVER_ERROR_DOC);
 		}
@@ -258,7 +258,7 @@ class View
 			$token = md5(uniqid());
 
 			$html = array(
-				'<div class="button code_toggle" onclick="Elusive.toggle_code(\'' . $token . '\')">Toggle Code Snippet</div>',
+				'<div class="button code_toggle" onclick="Elusive.toggle_code(\'' . $token . '\')">Code Snippet</div>',
 				'<pre id="' . $token . '" class="ec_source lang-php linenums:' . ($start+1) . '" style="display:none;">',
 				$lines,
 				'</pre>'

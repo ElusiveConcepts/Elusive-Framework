@@ -123,8 +123,6 @@
 	 */
 	const _import = function(url, type)
 	{
-		if(!CFG.supported) { return false; }
-
 		type = type || 'script';
 
 		let el = null;
