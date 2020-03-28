@@ -95,7 +95,7 @@ footer    { padding: 5px; background: rgba(0,0,0,0.7); border-top: 2px solid #56
 .ec_source li:nth-child(odd) { background: rgba(0,0,0,0.1); }
 
 .err_msg  { margin: 1em; color: #111; font-size: 1.2em; font-style: italic; }
-.message  { margin: 1em; color: #111; font-size: 1.1em; }
+.message  { margin: 1em 0; padding: 20px; color: #111; font-size: 1.1em; text-align: center; border: 1px solid #000; background: rgba(255,255,255,0.7); }
 .fileinfo { margin: 5px 0px 0px !important; padding: 2px 5px; color: #000; font-size: 0.9em; border-top: 1px solid rgba(0,0,0,0.5); background: rgba(0,0,0,0.2); }
 
 .fileinfo .line { float: right; }
