@@ -77,7 +77,22 @@ class Request
 
 		// Response Type
 		$this->response = isset($this->data['GET']['response'])  ? $this->data['GET']['response'] : $this->response;
-		$this->response = isset($this->data['POST']['response']) ? $this->data['GET']['response'] : $this->response;
+		$this->response = isset($this->data['POST']['response']) ? $this->data['POST']['response'] : $this->response;
+	}
+
+
+	/**
+	 * Limit the debugging info to specific properties
+	 *
+	 * @return array
+	 */
+	public function __debugInfo()
+	{
+		return [
+			'app'      => $this->app,
+			'vars'     => $this->vars,
+			'response' => $this->response
+		];
 	}
 
 	/**
