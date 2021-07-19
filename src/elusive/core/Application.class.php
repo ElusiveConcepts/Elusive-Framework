@@ -50,7 +50,27 @@ final class Application
 
 		// Try to load the Application Controller
 		$appclass = APP_CONTROLLER;
-		self::$app = new $appclass;
+
+		// Check if we're using a factory, singleton, or standard class
+		if(class_exists($appclass, true))
+		{
+			if(is_callable(array($appclass, 'create')))
+			{
+				self::$app = $appclass::create(); // factory method
+			}
+			else if(is_callable(array($appclass, 'get_instance')))
+			{
+				self::$app = $appclass::get_instance(); // singleton method
+			}
+			else
+			{
+				self::$app = new $appclass(); // constructor method
+			}
+		}
+		else
+		{
+			throw new \Exception("Application Controller Unavailable");
+		}
 
 		Events::dispatch('APPLICATION', 'COMPLETE');
 	}
