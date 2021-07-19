@@ -1,6 +1,12 @@
-<?php
+<?php namespace elusive\core;
+
+use \elusive\Singleton;
+
 /**
- * Elusive Framework Request Class File
+ * Request Object
+ *
+ * Singleton class which holds the request paramaters and cleans them for use.
+ * Must be called with Request::get_instance().
  *
  * @copyright Copyright (C) 2011-2016 Elusive Concepts, LLC.
  * @author Roger Soucy <roger.soucy@elusive-concepts.com>
@@ -9,20 +15,8 @@
  *
  * @package Elusive\Core
  */
-
-namespace elusive\core;
-
-/**
- * Request Object
- *
- * Singleton class which holds the request paramaters and cleans them for use.
- * Must be called with Request::get_instance().
- */
-class Request
+class Request extends Singleton
 {
-	/** @var object|null Holds the current instance of the request object */
-	private static $_instance = NULL;
-
 	/** @var array Raw (pre-processed) request data */
 	public $raw  = array();
 
@@ -42,9 +36,10 @@ class Request
 	 * Constructor
 	 *
 	 * Populates and cleans the request properties, performs some security
-	 * clean-up, and parses the request URI.
+	 * clean-up, and parses the request URI. Automatically called by the
+	 * static get_instance method defined in Singleton
 	 */
-	private function __construct()
+	protected function __construct()
 	{
 		// Add raw request data
 		$this->raw['ENV']     = $_SERVER;
@@ -93,23 +88,6 @@ class Request
 			'vars'     => $this->vars,
 			'response' => $this->response
 		];
-	}
-
-	/**
-	 * Get an instance of the Request object
-	 *
-	 * Creates an instance of the request object and returns the
-	 * current instance.
-	 *
-	 * @return object
-	 */
-	public static function get_instance()
-	{
-		if(self::$_instance == NULL)
-		{
-			self::$_instance = new Request();
-		}
-		return self::$_instance;
 	}
 
 	/**
