@@ -103,6 +103,7 @@ final class Elusive
 		// Determine the path to the requested class
 		$path = self::find_file(PATH_ROOT . "/{$name_space}/{$class_name}.class.php");
 		$path = ($path === FALSE) ? self::find_file(PATH_ROOT . "/{$name_space}/class.{$class_name}.php") : $path;
+		$path = ($path === FALSE) ? self::find_file(PATH_ROOT . "/{$name_space}/{$class_name}.php") : $path;
 
 		// If the file exists, require the file and return true
 		if($path !== FALSE)
