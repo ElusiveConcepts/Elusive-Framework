@@ -49,7 +49,10 @@ define('SERVER_ENV', 'DEVELOPMENT');
  *     APP_CONTROLLER = Main Application Controller
  *         Define Class and namespace for the main application controller
  */
-switch(array_shift(explode(".", $_SERVER['HTTP_HOST'])))
+$host = explode(".", $_SERVER['HTTP_HOST']);
+$app  = array_shift($host);
+
+switch($app)
 {
 	/* sample.example.com
 	// Sample Subdomain Application
