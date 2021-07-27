@@ -57,8 +57,8 @@ class Request extends Singleton
 		$this->data['COOKIE']  = $this->clean($_COOKIE);
 
 		// Drop all get and post data into an easy to access array
-		// note: post comes last because we trust it more
-		$this->vars = array_merge($this->data['GET'], $this->data['POST']);
+		// note: post comes last because we trust it more but we do strip tags
+		$this->vars = array_merge($this->data['GET'], $this->clean($_POST));
 
 		// Security Measure
 		$this->raw['ENV']['PATH']  = 'REMOVED';
@@ -111,6 +111,9 @@ class Request extends Singleton
 			}
 			else
 			{
+				// preserve newlines
+				$value = trim(str_replace("\r\n", '~!NL!~', $value));
+
 				if($allow_html)
 				{
 					$value = filter_var($value, FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW | FILTER_FLAG_ENCODE_HIGH);
@@ -120,6 +123,7 @@ class Request extends Singleton
 					$value = filter_var($value, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW | FILTER_FLAG_ENCODE_HIGH);
 				}
 
+				$value = str_replace('~!NL!~', "\n", $value);
 				$value = trim($value);
 
 				$data[$key] = $value;
