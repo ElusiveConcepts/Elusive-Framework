@@ -4,7 +4,7 @@
   "author": "Roger Soucy (http://elusive-concepts.com)",
   "version": "1.00.000",
   "devDependencies": {
-    "grunt": "^1.3.0",
+    "grunt": "^1.5.3",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-mkdir": "^1.0.0"
