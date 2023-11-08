@@ -3,8 +3,9 @@
 <?php
 
 $total_execution = Debug::get_benchmark('execution_time', 'Debug console render output...');
-$timer           = (isset($total_execution['TIMER_STOP']['TIME'])) ? $total_execution['TIMER_STOP']['TIME'] : "Timers";
-$error_count     = (count($this->errors['general']) == 1) ? '1 Error' : count($this->errors['general']).' Errors';
+$timer           = isset($total_execution['TIMER_STOP']['TIME']) ? $total_execution['TIMER_STOP']['TIME'] : "Timers";
+$error_count     = empty($this->errors['general']) ? 0 : count($this->errors['general']);
+$error_label     = ($error_count == 1) ? "{$error_count} Error" : "{$error_count} Errors";
 
 ?>
 
@@ -18,8 +19,8 @@ $error_count     = (count($this->errors['general']) == 1) ? '1 Error' : count($t
 		<li class="request" data-panel="request"><span class="elusive-icon-sphere"></span> Request</li>
 		<li class="logs"    data-panel="logs"   ><span class="elusive-icon-stack"></span> Logs</li>
 		<li class="events"  data-panel="events" ><span class="elusive-icon-flag"></span> Events</li>
-		<li class="errors"  data-panel="errors" ><span class="elusive-icon-warning"></span> <?= $error_count ?></li>
-		<li class="timeers" data-panel="timers" ><span class="elusive-icon-stopwatch"></span> <?= $timer ?></li>
+		<li class="errors"  data-panel="errors" ><span class="elusive-icon-warning"></span> <?= $error_label ?></li>
+		<li class="timers"  data-panel="timers" ><span class="elusive-icon-stopwatch"></span> <?= $timer ?></li>
 		<li class="close" onclick="Elusive.console.close()">
 			<span class="elusive-icon-cancel"></span><span class="text"> Close</span>
 		</li>
